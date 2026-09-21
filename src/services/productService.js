@@ -1,6 +1,5 @@
 const fetchProducts = async () => {
   try {
-    // fetch the products from the API
     const response = await fetch("https://fakestoreapi.com/products", {
       method: "GET",
       headers: {
@@ -13,10 +12,10 @@ const fetchProducts = async () => {
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (err) {
-    console.error("Unable to fetch products", err.message);
+    console.error("Unable to fetch products:", err.message);
+    throw err;
   }
 };
 
