@@ -50,8 +50,13 @@ function Home() {
           Discover a curated collection of clothing, jewelry, and electronics
           designed to give you more choices without making shopping complicated.
         </p>
-      </div>
-    </div>
+        <Link to="/products">
+          <button className="mt-5 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
+            Explore Products
+          </button>
+        </Link>
+      </section>
+    </main>
   );
 }
 
