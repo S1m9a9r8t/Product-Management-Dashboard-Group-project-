@@ -12,6 +12,7 @@ const fetchProducts = async () => {
     }
 
     const data = await response.json();
+
     return data;
   } catch (err) {
     console.error("Unable to fetch products:", err.message);
