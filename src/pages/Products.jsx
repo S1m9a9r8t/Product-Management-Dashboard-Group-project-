@@ -7,11 +7,16 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProducts = products.filter((product) =>
-  product.title.toLowerCase()
-  .includes(searchTerm.toLowerCase())
-);
+
+  const filteredProducts = products.filter((product) => {
+  const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
+  const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
+  return matchesSearch && matchesCategory;
+});
+  const categories = ["All", ...new Set(products.map((product) => product.category))];
+
 
   useEffect(() => {
     fetchProducts()
@@ -31,8 +36,22 @@ function Products() {
   placeholder="Search products..."
   value={searchTerm}
   onChange={(e) => setSearchTerm(e.target.value)}
-  className="border rounded px-4 py-2 w-full max-w-md mb-6 ml-4 mt-6 shadow-md "
+  className="border rounded px-4 py-2 w-full max-w-md mb-6 ml-4 mt-6 shadow-md  "
     />
+    <select
+      value={selectedCategory}
+      onChange={(e) => setSelectedCategory(e.target.value)}
+      className="border rounded px-4 py-2 ml-4 mt-6 shadow-md"
+      >
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+
+
+      </select>
+
 
     {filteredProducts.length === 0 ? (
        <p className="text-gray-500 mt-4">No products found.</p>
