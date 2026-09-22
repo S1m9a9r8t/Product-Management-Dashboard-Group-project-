@@ -45,7 +45,9 @@ function Home() {
       </div>
 
       <div>
-        <h2 className="text-lg font-semibold">Everything you need, in one place</h2>
+        <h2 className="text-lg font-semibold">
+          Everything you need, in one place
+        </h2>
         <p className="text-gray-600">
           Discover a curated collection of clothing, jewelry, and electronics
           designed to give you more choices without making shopping complicated.
@@ -59,5 +61,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
