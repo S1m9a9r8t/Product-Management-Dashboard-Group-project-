@@ -20,18 +20,18 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex-col px-4 sm:px-8 py-10 space-y-16 max-w-6xl mx-auto">
-      {/* Hero Section */}
-      <div className= "backdrop-opacity-10 text-center">
-        <h1 className="py-2 flex justify-center items-center space-x-2">
-          <span className="font-bold text-2xl sm:text-3xl text-slate-800 self-center">
+    <div className="px-4 sm:px-8 py-10 space-y-16 max-w-6xl mx-auto">
+      <div className="text-center">
+        <h1 className="flex justify-center items-center gap-2 py-2">
+          <span className="font-bold text-2xl sm:text-3xl text-slate-800">
             Welcome to
           </span>
           <span className="font-black text-4xl sm:text-5xl italic bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
             Prodexa
           </span>
         </h1>
-        <p className="text-center font-normal italic text-base sm:text-lg text-slate-500 dark:text-slate-400 mt-2">
+
+        <p className="text-base sm:text-lg text-slate-500 italic mt-3">
           Fashion, jewelry and electronics in one place.
         </p>
 
@@ -43,26 +43,45 @@ function Home() {
 
         <Link
           to="/products"
-          className="inline-block mt-10 rounded-full border-none bg-emerald-500 px-8 py-3.5 text-white font-bold text-base shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 hover:shadow-emerald-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          className="inline-block mt-10 rounded-full bg-emerald-500 px-8 py-3.5 text-white font-bold shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 hover:shadow-emerald-600/30 transition-all hover:-translate-y-1"
         >
           Shop Now
         </Link>
       </div>
 
-      {/* Feature Callout Section */}
       <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-xl">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-bold">
           Everything you need, in one place
         </h2>
-        <p className="text-slate-300 mt-3 max-w-2xl mx-auto font-light leading-relaxed">
-          Discover a curated collection of clothing, jewelry, and electronics
-          designed to give you more choices without making shopping complicated.
+
+        <p className="text-slate-300 mt-3 max-w-2xl mx-auto leading-relaxed">
+          Discover clothing, jewelry, and electronics designed to give you more
+          choices without making shopping complicated.
         </p>
-        <Link to="/products">
-          <button className="mt-8 bg-blue-600 text-white font-medium px-8 py-3 rounded-xl hover:bg-blue-500 transition-colors shadow-md hover:shadow-blue-500/25">
-            Explore Products
-          </button>
+
+        <Link
+          to="/products"
+          className="inline-block mt-8 bg-blue-600 text-white font-medium px-8 py-3 rounded-xl hover:bg-blue-500 transition-all hover:-translate-y-0.5 shadow-md"
+        >
+          Explore Products
         </Link>
+
+        <div className="mt-10 pt-8 border-t border-slate-700">
+          <h3 className="text-lg font-semibold mb-2">
+            Need help finding something?
+          </h3>
+
+          <p className="text-gray-300 mb-5">
+            Our team is here for you. Reach out anytime.
+          </p>
+
+          <Link
+            to="/contact"
+            className="inline-block rounded-full bg-white text-gray-900 px-6 py-2.5 font-medium hover:bg-gray-200 transition-all hover:-translate-y-0.5"
+          >
+            Contact Us
+          </Link>
+        </div>
       </div>
     </div>
   );

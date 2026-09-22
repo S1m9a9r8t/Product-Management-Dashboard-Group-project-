@@ -1,12 +1,5 @@
 import { useState } from "react";
 
-/* 
-14. Contact Page
-Create a contact form with Full Name, Email, Subject, Message, and Submit.
-Use React state, handle input changes, prevent default browser submission,
-process the information, and show a success message.
-*/
-
 function Contact() {
   const [form, setForm] = useState({
     fullName: "",
@@ -23,14 +16,11 @@ function Contact() {
       [e.target.name]: e.target.value,
     }));
 
-    // Remove the success message if the user starts editing again
     setMessage("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("form data", form);
 
     setMessage("Your message has been submitted successfully.");
 
@@ -44,9 +34,16 @@ function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-10">
-      <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 shadow-md md:p-8">
+      <div className="mx-auto w-full max-w-2xl rounded-xl bg-white p-6 shadow-md md:p-8 border-t-4 border-green-500">
         <div className="mb-6 text-center">
-          <h1 className="text-3xl font-bold text-gray-800">Contact Us</h1>
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-2xl">
+            ✉️
+          </div>
+
+          <h1 className="text-3xl font-bold text-gray-800">
+            Contact Us
+          </h1>
+
           <p className="mt-2 text-sm text-gray-500">
             Have a question or need help? Send us a message.
           </p>
@@ -135,13 +132,13 @@ function Contact() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-green-500 py-3 font-semibold text-white transition hover:bg-green-600"
+           className="w-full rounded-lg !bg-sky-400 py-3 font-semibold !text-white transition hover:!bg-sky-500 hover:-translate-y-0.5"
           >
-            Submit
+             Submit
           </button>
 
           {message && (
-            <p className="rounded-lg bg-green-50 p-3 text-center text-sm font-medium text-green-700">
+            <p className="w-full rounded-lg bg-green-100 p-3 text-center text-sm font-medium text-green-700">
               {message}
             </p>
           )}

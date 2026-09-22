@@ -76,10 +76,11 @@ Each feature (API integration, search, category filter, pages, styling, etc.) wa
 - README documentation
 
 *[Saron Abebe Demisu ]:*
--Fake Store API integration (`productService.js`)
+
 - ProductCard component
 - Home page (hero section, initial layout)
 - Login page
 - Contact page
+- Fake Store API integration (`productService.js`)
 
 
