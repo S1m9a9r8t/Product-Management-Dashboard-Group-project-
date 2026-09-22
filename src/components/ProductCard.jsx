@@ -10,9 +10,10 @@ function ProductCard({ product }) {
       <p className="text-xs text-gray-500 capitalize">{product.category}</p>
       <p className="text-lg font-bold text-blue-600 mt-2">${product.price}</p>
       <p className="text-xs text-gray-600 mt-1 line-clamp-3">{product.description}</p>
-      <button className="mt-4 bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700">
-        View Details
-      </button>
+      <button className="mt-4 mx-auto block w-2/3 bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700">
+         View Details
+       </button>
+  
     </div>
   );
 }
