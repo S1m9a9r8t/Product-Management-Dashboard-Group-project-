@@ -55,8 +55,8 @@ function Home() {
             Explore Products
           </button>
         </Link>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
 
