@@ -6,6 +6,7 @@ import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
           </Routes>
         </main>
         <Footer />

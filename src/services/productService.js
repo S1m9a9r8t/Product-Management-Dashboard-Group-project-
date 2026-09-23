@@ -21,3 +21,21 @@ const fetchProducts = async () => {
 };
 
 export { fetchProducts };
+
+export async function fetchProductById(id) {
+  try {
+    const responce= await fetch(`https://fakestoreapi.com/products/${id}`);
+      if (!responce.ok) {
+        throw new Error(`HTTP error: ${responce.status}`);
+      }
+
+      const data =await responce.json();
+      return data;
+    } catch (err) {
+      console.error("Unable to fetch product:", err.message);
+      throw err;
+    }
+
+    }
+  
+
