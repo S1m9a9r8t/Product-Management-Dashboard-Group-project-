@@ -1,7 +1,10 @@
 import {Link} from "react-router";
+import { useCartStore } from "../store/cartStore.js";
 
 
 function ProductCard({ product }) {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   return (
     <div className="font-family-Inter shadow-sm p-4 flex flex-col justify-between hover:shadow-md transition">
       <img
@@ -13,12 +16,21 @@ function ProductCard({ product }) {
       <p className="text-xs text-gray-500 capitalize">{product.category}</p>
       <p className="text-lg font-bold text-blue-600 mt-2">${product.price}</p>
       <p className="text-xs text-gray-600 mt-1 line-clamp-3">{product.description}</p>
-      <Link
-      to={`/products/${product.id}`}
-      className="mt-4 mx-auto block w-2/3 text-center bg-blue-600 text-white text-sm py-2 rounded-xl hover:bg-blue-700"
-         >
-         View Details
-       </Link>
+      <div className="flex gap-2 mt-4">
+  <Link
+    to={`/products/${product.id}`}
+    className="flex-1 text-center bg-blue-600 text-white text-sm py-2 rounded-xl hover:bg-blue-700"
+  >
+    View Details
+  </Link>
+
+  <button
+    onClick={() => addToCart(product)}
+    className="flex-1 bg-blue-600 text-white text-sm py-2 rounded-xl hover:bg-blue-700 "
+  >
+    Add to Cart
+  </button>
+</div>
   
     </div>
   );
