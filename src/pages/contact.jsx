@@ -132,7 +132,7 @@ function Contact() {
 
           <button
             type="submit"
-           className="w-full rounded-lg !bg-sky-400 py-3 font-semibold !text-white transition hover:!bg-sky-500 hover:-translate-y-0.5"
+           className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 hover:-translate-y-0.5"
           >
              Submit
           </button>

@@ -1,9 +1,15 @@
 import {useState,useEffect} from "react";
 import {Link,useParams} from "react-router";
 import{fetchProductById} from "../services/productService.js";
+import {useCartStore} from "../store/cartStore.js";
+
+
 
 function ProductDetail() {
     const {id} = useParams();
+
+    const addToCart = useCartStore((state)=> state.addToCart);
+
     const[product,setProduct] = useState(null);
     const[loading,setLoading] = useState(true);
     const[error,setError] = useState(null);
@@ -55,11 +61,12 @@ useEffect(()=> {
                     <p className="text-2xl font-semibold text-blue-600 mb-4">${product.price}</p>
                     <p className="text-gray-600 mb-6">{product.description}</p>
 
-                    <button 
-                    onClick={()=> console.log("Added to cart:",product)}
-                    className="bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition"
-                    >Add to Cart
-                    </button>                
+                    <button
+                        onClick={() => addToCart(product)}
+                        className="bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition"
+                    >
+                     Add to Cart
+                    </button>              
                 </div>
             </div>
         </div>
