@@ -10,7 +10,7 @@ function Cart() {
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
@@ -29,73 +29,81 @@ function Cart() {
         </div>
       ) : (
         <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-5">
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-4 border rounded-lg p-4 shadow-sm"
+                className="flex-col items-center gap-4 border rounded-lg p-4 shadow-sm md:flex-row md:py-2 pw-1 "
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-20 w-20 object-contain"
-                />
+                <div className="flex justify-between gap-5 md:justify-evenly md:gap-2">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-30 w-30 object-contain"
+                  />
+                  <h2 className="font-semibold self-center">{item.title}</h2>
+                </div>
 
                 <div className="flex-1">
-                  <h2 className="font-semibold text-sm">{item.title}</h2>
-                  <p className="text-blue-600 font-bold">${item.price}</p>
+                  <p className="text-blue-600 font-bold text-2xl justify-self-center">
+                    ${item.price}
+                  </p>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-between py-2 px-3 md:justify-between">
+                  <div className="flex flex-1 justify-evenly gap-3 py-1 px-2 ">
+                    <button
+                      onClick={() => decreaseQuantity(item.id)}
+                      className="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300  text-2xl font-bold"
+                    >
+                      <span className="self-center">-</span>
+                    </button>
+                    <span className="self-center font-extrabold text-2xl">
+                      {item.quantity}
+                    </span>
+                    <button
+                      onClick={() => increaseQuantity(item.id)}
+                      className="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300  text-2xl font-bold"
+                    >
+                      <span className="self-center">+</span>
+                    </button>
+                  </div>
+
                   <button
-                    onClick={() => decreaseQuantity(item.id)}
-                    className="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300"
+                    onClick={() => removeItem(item.id)}
+                    className="flex-0.75 text-white font-bold hover:bg-red-700 text-sm ml-4 bg-red-500 py-1 px-2.5 rounded-4xl"
                   >
-                    −
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() => increaseQuantity(item.id)}
-                    className="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300"
-                  >
-                    +
+                    Remove
                   </button>
                 </div>
-
-                <button
-                  onClick={() => removeItem(item.id)}
-                  className="text-red-500 hover:text-red-700 text-sm ml-4"
-                >
-                  Remove
-                </button>
               </div>
             ))}
           </div>
-           
-          <div className="md:w-64 border rounded-lg p-5 shadow-sm h-fit">
-            <h2 className="font-semibold text-gray-800 mb-4">Order Summary</h2>
+
+          <div className="m-0 w-full p-5 shadow-sm h-fit bg-slate-900 text-white rounded self-center md:w-64 ">
+            <h2 className="font-bold text-white mb-4 text-2xl ">
+              Order Summary
+            </h2>
             <div className="flex justify-between text-sm text-gray-600 mb-2">
-              <span>Items</span>
-              <span>{cartItems.reduce((sum, item) => sum + item.quantity, 0)}</span>
+              <span className="font-semibold text-white">Items</span>
+              <span className="font-bold text-white ">
+                {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+              </span>
             </div>
             <div className="flex justify-between font-bold text-lg border-t pt-3 mt-3">
               <span>Total</span>
               <span>${total.toFixed(2)}</span>
             </div>
-             <button
-  onClick={clearCart}
-  className="self-start  mt-2 ml-auto w-fit h-fit text-white-500  bg-red-600 hover:bg-red-700 text-sm border border-red-200 rounded-lg px-4 py-2"
->
-  Clear Cart
-</button>
-    
+            <button
+              onClick={clearCart}
+              className="self-start  mt-2 ml-auto w-fit h-fit text-white-500  bg-red-600 hover:bg-red-700 text-sm border border-red-200 rounded-lg px-4 py-2"
+            >
+              Clear Cart
+            </button>
           </div>
         </div>
       )}
-  
-
     </div>
-     
   );
 }
 

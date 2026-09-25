@@ -67,7 +67,18 @@ function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
           >
             {/* Dynamic content - if not opened => hamburger manu, if opened => close button */}
-            {isOpen ? <CloseIcon /> : <MenuIcon />}
+            {isOpen ? (
+              <CloseIcon />
+            ) : (
+              <>
+                <MenuIcon />
+                {itemCount > 0 && (
+                  <span className="border-1 border-red-500 px-2 py-0.25 rounded-full font-extrabold text-white bg-red-500 text-sm text-center">
+                    {itemCount}
+                  </span>
+                )}
+              </>
+            )}
           </button>
         </div>
       </nav>
