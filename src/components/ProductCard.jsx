@@ -1,6 +1,5 @@
-import {Link} from "react-router";
+import { Link } from "react-router";
 import { useCartStore } from "../store/cartStore.js";
-
 
 function ProductCard({ product }) {
   const addToCart = useCartStore((state) => state.addToCart);

@@ -91,6 +91,7 @@ function Navbar() {
           <NavLink
             to="/"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            onClick={() => setIsOpen(false)}
           >
             Home
           </NavLink>
@@ -98,6 +99,7 @@ function Navbar() {
           <NavLink
             to="/products"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            onClick={() => setIsOpen(false)}
           >
             Products
           </NavLink>
@@ -105,6 +107,7 @@ function Navbar() {
           <NavLink
             to="/about"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            onClick={() => setIsOpen(false)}
           >
             About
           </NavLink>
@@ -112,6 +115,7 @@ function Navbar() {
           <NavLink
             to="/contact"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            onClick={() => setIsOpen(false)}
           >
             Contact
           </NavLink>
@@ -119,6 +123,7 @@ function Navbar() {
           <NavLink
             to="/cart"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 px-4"
+            onClick={() => setIsOpen(false)}
           >
             Cart {itemCount > 0 && `(${itemCount})`}
           </NavLink>
@@ -126,6 +131,7 @@ function Navbar() {
           <NavLink
             to="/login"
             className="px-4 py-2 rounded-lg text-sm font-medium text-white hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            onClick={() => setIsOpen(false)}
           >
             Login
           </NavLink>

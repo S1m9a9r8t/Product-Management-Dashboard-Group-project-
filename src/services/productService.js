@@ -2,9 +2,6 @@ const fetchProducts = async () => {
   try {
     const response = await fetch(`https://dummyjson.com/products`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
 
     if (!response.ok) {
@@ -12,8 +9,8 @@ const fetchProducts = async () => {
     }
 
     const data = await response.json();
-
-    return data;
+    console.log(data.products);
+    return data.products;
   } catch (err) {
     console.error("Unable to fetch products:", err.message);
     throw err;
@@ -37,5 +34,11 @@ export async function fetchProductById(id) {
     }
 
     }
-  
 
+    const data = await responce.json();
+    return data;
+  } catch (err) {
+    console.error("Unable to fetch product:", err.message);
+    throw err;
+  }
+}
