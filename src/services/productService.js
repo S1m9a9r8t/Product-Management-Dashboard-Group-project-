@@ -1,6 +1,6 @@
 const fetchProducts = async () => {
   try {
-    const response = await fetch("https://fakestoreapi.com/products", {
+    const response = await fetch(`https://dummyjson.com/products`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export { fetchProducts };
 
 export async function fetchProductById(id) {
   try {
-    const responce= await fetch(`https://fakestoreapi.com/products/${id}`);
+    const responce= await fetch(`https://dummyjson.com/products/${id}`);
       if (!responce.ok) {
         throw new Error(`HTTP error: ${responce.status}`);
       }

@@ -49,7 +49,7 @@ useEffect(()=> {
             <div className="flex flex-col md:flex-row gap-8 mt-6">
                 <div className="md:w-1/2 flex items-center justify-center bg-white p-6 rounded-lg shadow-sm">
                     <img
-                    src={product.image}
+                    src={product.thumbnail}
                     alt={product.title}
                     className="max-h-80 object-contain"/>
                 
