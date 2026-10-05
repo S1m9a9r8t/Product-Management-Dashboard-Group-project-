@@ -37,7 +37,7 @@ function Cart() {
               >
                 <div className="flex justify-between gap-5 md:justify-evenly md:gap-2">
                   <img
-                    src={item.image}
+                    src={item.images[0]}
                     alt={item.title}
                     className="h-30 w-30 object-contain"
                   />
