@@ -1,112 +1,81 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { loginUser } from "../services/authService.js";
+import { useAuthStore } from "../store/authStore.js";
 
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState({});
-  //Create a simple login form with Email, Password, and Login button. Use React state. Real authentication is not
-  // required for this assignment. Show an appropriate submission message
-  const handleSubmit = (e) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
 
-    // required field checks if the values are empty
-    // add basic form related validation and give appropriate response
-    const newErrors = {};
-    if (!form.email.endsWith("@gmail.com")) {
-      newErrors.emailError = "Please enter a valid Gmail address";
+    try {
+      const token = await loginUser(username, password);
+      login(token, username);
+      navigate("/");
+    } catch (err) {
+      setError("Invalid username or password. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    if (form.password.length < 6) {
-      newErrors.passwordError = "Password must be at least 6 characters";
-    }
-
-    setErrors(newErrors); // won't update until the next render
-    setMessage("");
-
-    // terminate submission if there are errors,
-    if (Object.keys(newErrors).length > 0) {
-      return;
-    }
-    setMessage("Login submitted successfully.");
-    console.log("Form Submitted: ", form);
-  };
-
-  const handleChange = (e) => {
-    const formData = {
-      ...form,
-      [e.target.name]: e.target.value,
-    };
-
-    setForm(formData);
-
-    setErrors({ ...errors, [e.target.name]: "" });
-    setMessage("");
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="text-gray-500 mt-2">Login to continue to Prodexa</p>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <h1 className="text-2xl font-bold text-center mb-2">Welcome Back</h1>
+        <p className="text-gray-500 text-center mb-6">
+          Login to continue to Prodexa
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Email
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Username
             </label>
             <input
-              type="email"
-              placeholder="johndoe@gmail.com"
-              name="email"
-              id="email"
-              value={form.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 border rounded-lg outline-none transition ${errors.emailError ? "border-red-500 focus:ring-2 focus:ring-red-200 " : "border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-100"}`}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="emilys"
+              required
+              className="w-full border rounded-lg px-4 py-2.5 outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {errors.emailError && (
-              <p className="text-red-500 text-sm mt-1">{errors.emailError}</p>
-            )}
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              name="password"
-              id="password"
-              value={form.password}
-              onChange={handleChange}
-              className={`w-full px-4 py-3 border rounded-lg outline-none transition ${errors.passwordError ? "border-red-500 focus:ring-2 focus:ring-red-200" : "border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-100"}`}
+              required
+              className="w-full border rounded-lg px-4 py-2.5 outline-none focus:ring-2 focus:ring-blue-500"
             />
-            {errors.passwordError && (
-              <p className="text-sm text-red-500 mt-1">
-                {" "}
-                {errors.passwordError}{" "}
-              </p>
-            )}
           </div>
+
+          {error && (
+            <p className="text-red-500 text-sm text-center">{error}</p>
+          )}
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
-
-          {message && (
-            <div className="bg-green-50 border border-green-200 text-green-700 rounded-lg p-3 text-sm">
-              {message}
-            </div>
-          )}
         </form>
       </div>
     </div>

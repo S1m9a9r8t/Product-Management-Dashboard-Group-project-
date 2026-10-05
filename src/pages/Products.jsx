@@ -27,7 +27,7 @@ function Products() {
 
   useEffect(() => {
     fetchProducts()
-      .then((data) => setProducts(data.products))
+      .then((data) => setProducts(data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);

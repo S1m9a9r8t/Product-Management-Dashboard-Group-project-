@@ -4,7 +4,7 @@
 
 # Prodexa
 
-A Product Management Dashboard for a small online store, built with React, React Router, and Tailwind CSS. Product data is fetched live from the [Fake Store API](https://fakestoreapi.com/).
+A Product Management Dashboard for a small online store, built with React, React Router, and Tailwind CSS. Product data is fetched live from the [Fake Store API](https://dummyjson.com/).
 
 ## Features
 
@@ -25,9 +25,9 @@ A Product Management Dashboard for a small online store, built with React, React
 
 ## API Information
 
-This project uses the [Fake Store API](https://fakestoreapi.com/) as its sole source of product data — no local mock data is used.
+This project uses the [Fake Store API](https://dummyjson.com/) as its sole source of product data — no local mock data is used.
 
-- Endpoint used: `https://fakestoreapi.com/products`
+- Endpoint used: `(`https://dummyjson.com/products`)`
 - Method: `GET`, handled via the Fetch API inside `services/productService.js`
 - Data returned: product id, title, price, description, category, image, and rating
 - Categories shown in the filter dropdown are pulled dynamically from the fetched products, not hardcoded.

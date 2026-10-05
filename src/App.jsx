@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/Cart.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
   return (
@@ -21,7 +22,14 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+  path="/cart"
+  element={
+    <ProtectedRoute>
+      <Cart />
+    </ProtectedRoute>
+  }
+/>
           </Routes>
         </main>
         <Footer />
