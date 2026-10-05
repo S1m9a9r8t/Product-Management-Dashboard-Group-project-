@@ -3,9 +3,20 @@ import { NavLink } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useCartStore } from "../store/cartStore.js";
+import { useAuthStore } from "../store/authStore.js";
+import { useNavigate } from "react-router";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+const user = useAuthStore((state) => state.user);
+const logout = useAuthStore((state) => state.logout);
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  logout();
+  navigate("/login");
+};
 
   const cartItems = useCartStore((state) => state.cartItems);
   const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -51,12 +62,21 @@ function Navbar() {
             Cart {itemCount > 0 && `(${itemCount})`}
           </NavLink>
 
-          <NavLink
-            to="/login"
-            className="px-5 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200"
-          >
-            Login
-          </NavLink>
+         {isAuthenticated ? (
+  <div className="flex items-center gap-3">
+    <span className="text-sm text-gray-600">Hi, {user}</span>
+    <button
+      onClick={handleLogout}
+      className="text-sm text-red-500 hover:text-red-700"
+    >
+      Logout
+    </button>
+  </div>
+) : (
+  <NavLink to="/login" className="bg-blue-600 text-white px-4 py-1.5 rounded-lg hover:bg-blue-700">
+    Login
+  </NavLink>
+)}
         </div>
         {/* Mobile Hamburger button - visible on mobile and hidden for larger screens */}
         <div className="flex md:hidden">
