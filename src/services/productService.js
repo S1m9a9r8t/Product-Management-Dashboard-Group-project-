@@ -1,6 +1,6 @@
 const fetchProducts = async () => {
   try {
-    const response = await fetch("https://dummyjson.com/products", {
+    const response = await fetch(`https://dummyjson.com/products`, {
       method: "GET",
     });
 
@@ -21,9 +21,18 @@ export { fetchProducts };
 
 export async function fetchProductById(id) {
   try {
-    const responce = await fetch(`https://dummyjson.com/products/${id}`);
-    if (!responce.ok) {
-      throw new Error(`HTTP error: ${responce.status}`);
+    const responce= await fetch(`https://dummyjson.com/products/${id}`);
+      if (!responce.ok) {
+        throw new Error(`HTTP error: ${responce.status}`);
+      }
+
+      const data =await responce.json();
+      return data;
+    } catch (err) {
+      console.error("Unable to fetch product:", err.message);
+      throw err;
+    }
+
     }
 
     const data = await responce.json();
